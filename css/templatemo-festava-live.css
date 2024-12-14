@@ -660,6 +660,37 @@ strong {
   padding-bottom: 35px;
 }
 
+ 
+@media (max-width: 768px) {
+  .artists-hover {
+    padding: 20px; /* Reduce padding for mobile */
+  }
+
+  .artists-hover p strong {
+    font-size: 1rem; /* Reduce font size */
+    min-width: 150px; /* Adjust width */
+  }
+
+  .artists-hover p {
+    font-size: 0.9rem; /* Reduce font size for regular text */
+  }
+}
+
+@media (max-width: 576px) {
+  .artists-hover {
+    padding: 15px; /* Further reduce padding for extra-small devices */
+  }
+
+  .artists-hover p strong {
+    font-size: 0.9rem; /* Further reduce font size */
+    min-width: 120px; /* Adjust width */
+  }
+
+  .artists-hover p {
+    font-size: 0.8rem; /* Further reduce font size for regular text */
+  }
+}
+
 
 
 /*---------------------------------------
