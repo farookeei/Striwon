@@ -50,8 +50,7 @@ https://templatemo.com/tm-583-festava-live
 
                     <div class="col-lg-12 col-12 d-flex flex-wrap">
                         <p class="d-flex me-4 mb-0">
-                            <!-- <i class="bi-person custom-icon me-2"></i> -->
-                            <strong class="text-light">STRIWON | Built by Grit </strong>
+                             <strong class="text-light">STRIWON | Built by Grit </strong>
                         </p>
                     </div>
 
@@ -65,20 +64,20 @@ https://templatemo.com/tm-583-festava-live
                 <!-- <a class="navbar-brand" href="index.html">
 STRIWON                </a> -->
 
-<a class="navbar-brand d-flex align-items-center" href="index.html" >
+<a class="navbar-brand d-flex align-items-center" href="#" >
     <img src="images/logo.png" alt="STRIWON Logo" style="height: 80px; width: auto; margin-right: 10px;">
     
   </a>
 
                 <!-- <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a> -->
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
 
-                <div class="collapse navbar-collapse" id="navbarNav"  >
-                    <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5" >
+                <!-- <div class="collapse navbar-collapse" id="navbarNav"  >
+                    <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5" > -->
                         <!-- <li class="nav-item">
                             <a class="nav-link click-scroll" 
                            
@@ -108,7 +107,7 @@ STRIWON                </a> -->
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_6">Contact</a>
                         </li> -->
-                    </ul>
+                    <!-- </ul> -->
                    
  
 
@@ -117,7 +116,7 @@ STRIWON                </a> -->
                     href="mailto:contact@striwon.com?subject=Early Access Request&body=Hi STRIWON Team,%0A%0AI would like to request early access to your first product release. %0A%0AThank you,%0A[Your Name]"                            
                    >EARLY ACCESS</a> -->
                   
-                </div>
+                <!-- </div> -->
             </div>
         </nav>
 
@@ -266,7 +265,7 @@ STRIWON                </a> -->
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 text-center">
-                        <h2 class="mb-4">Explore Our Collection</h2>
+                        <h2 class="artists-section-header">Explore Our Collection</h2>
                     </div>
         
                     <!-- Product 1 and Product 3 side by side -->
@@ -277,8 +276,8 @@ STRIWON                </a> -->
                                 <img src="images/products/1.jpg" class="artists-image img-fluid" alt="Product 1">
                             </div>
                             <div class="artists-hover">
-                                <p><strong>Product Name:</strong> AirFlowX Performance Tee</p>
-                                <p><strong>Description:</strong><br> A Performance fabric engineered for lightweight breathability and all-day comfort.</p>
+                                <p><strong>Product Name:</strong><br>AirFlowX Performance Tee</p>
+                                <p><strong>Description:</strong><br>A Performance fabric engineered for lightweight breathability and all-day comfort.</p>
                                 <!-- <p><strong>Price:</strong> $49.99</p> -->
                             </div>
                         </div>
@@ -291,8 +290,8 @@ STRIWON                </a> -->
                                 <img src="images/products/3.jpg" class="artists-image img-fluid" alt="Product 3">
                             </div>
                             <div class="artists-hover">
-                                <p><strong>Product Name:</strong> AirFlowX Performance Tee</p>
-                                <p><strong>Description:</strong><br> A Performance fabric engineered for lightweight breathability and all-day comfort.</p>
+                                <p><strong>Product Name:</strong><br>AirFlowX Performance Tee</p>
+                                <p><strong>Description:</strong><br>A Performance fabric engineered for lightweight breathability and all-day comfort.</p>
                                 <!-- <p><strong>Price:</strong> $49.99</p> -->
                             </div>
                         </div>
@@ -711,6 +710,23 @@ T e m p l a t e M o
     <script src="js/jquery.sticky.js"></script>
     <script src="js/click-scroll.js"></script>
     <script src="js/custom.js"></script>
+
+    <script>
+        window.addEventListener('scroll', function() {
+          var logo = document.querySelector('.navbar-brand img');
+          var heroSection = document.getElementById('section_1');  // Second section
+          var heroSectionTop = heroSection.offsetHeight; // Get position of the second section
+      
+          // Detect if the logo has crossed the first section and is in the second
+          if (window.scrollY > heroSectionTop) {
+            // Once it moves out of the first section, change the logo color
+            logo.classList.add('logo-black');
+          } else {
+            // Otherwise, keep the logo in its original color
+            logo.classList.remove('logo-black');
+          }
+        });
+      </script>
 
 </body>
 
