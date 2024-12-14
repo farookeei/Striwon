@@ -605,7 +605,7 @@ strong {
 
 .artists-hover {
   background-color: var(--primary-color);
-  background-color: rgba(248, 203, 46, 0.75);
+  background-color: rgba(21, 21, 17, 0.75);
   border-radius: var(--border-radius-medium);
   backdrop-filter: blur(5px) saturate(180%);
   -webkit-backdrop-filter: blur(5px) saturate(180%);
@@ -750,7 +750,7 @@ strong {
 
 .pricing-tag {
   background-color: var(--secondary-color);
-  border-radius: var(--border-radius-large);
+  border-radius: 50%; /* Ensures the element is always a circle */
   color: var(--white-color);
   font-weight: var(--font-weight-bold);
   text-align: center;
@@ -758,17 +758,43 @@ strong {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 120px;
+  width: 100px; /* Default size */
+  height: 100px; /* Default size */
   position: absolute;
   top: 0;
   right: 0;
-  margin: 20px;
+  margin: 15px; /* Adjusted for smaller screens */
 }
 
 .pricing-tag span {
-  font-size: 180%;
+  font-size: 120%; /* Default font size */
   line-height: normal;
+}
+
+/* Adjust for medium screens (tablets) */
+@media (min-width: 768px) {
+  .pricing-tag {
+    width: 110px;
+    height: 110px;
+    margin: 18px;
+  }
+
+  .pricing-tag span {
+    font-size: 150%;
+  }
+}
+
+/* Adjust for large screens (desktops) */
+@media (min-width: 1024px) {
+  .pricing-tag {
+    width: 120px;
+    height: 120px;
+    margin: 20px;
+  }
+
+  .pricing-tag span {
+    font-size: 180%;
+  }
 }
 
 .pricing-thumb .link-fx-1 {
@@ -778,6 +804,7 @@ strong {
 .pricing-thumb .link-fx-1:hover {
   color: var(--link-hover-color);
 }
+
 
 
 /*---------------------------------------
