@@ -784,6 +784,7 @@ strong {
   }
 }
 
+
 /* Adjust for large screens (desktops) */
 @media (min-width: 1024px) {
   .pricing-tag {
