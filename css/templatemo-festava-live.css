@@ -1107,6 +1107,26 @@ strong {
   }
 }
 
+/*---------------------------------------
+  INQUIRY FORM              
+-----------------------------------------*/
+.form-description {
+  text-align: center; /* Center-align the main paragraph */
+}
+
+.form-perks {
+  list-style-type: disc; /* Standard bullet style */
+  margin: 0 auto; /* Center the list itself */
+  padding: 0;
+  text-align: left; /* Left-align the bullet points */
+  max-width: 500px; /* Optional: Limit the width for better alignment */
+}
+
+.form-perks li {
+  margin-bottom: 0.5rem; /* Spacing between bullet points */
+  line-height: 1.5; /* Improve readability for multi-line bullets */
+}
+
 
 /*---------------------------------------
   RESPONSIVE STYLES               

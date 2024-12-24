@@ -197,7 +197,7 @@ https://templatemo.com/tm-583-festava-live
                   <li>Join our founding community of supporters</li>
                   <li>Guaranteed premium quality and performance</li>
                 </ul>
-                Fill out the form below to claim your perks and stay in the loop!
+                <!-- Fill out the form below to claim your perks and stay in the loop! -->
               </p>
               <form action="https://submit-form.com/ICCW7BXEC" method="POST" class="inquiry-form">
                 <div class="form-group">
@@ -553,8 +553,12 @@ T e m p l a t e M o
           // Adjust the condition to check if section 4 is visible
           if (window.scrollY >= lastSectionTop - window.innerHeight / 2) {
             prebookButton.style.display = 'none'; // Hide the button when section 4 is in view
+
+            logo.style.display="none";
           } else {
             prebookButton.style.display = 'block'; // Show the button otherwise
+            logo.style.display = 'block'; // Show the button otherwise
+
           }
         });
       </script>
