@@ -208,7 +208,13 @@ strong {
   transform-origin: 19px 15px;
 }
 
-
+/*---------------------------------------
+  LOGO               
+-----------------------------------------*/
+.logo-black {
+  filter: invert(1) grayscale(100%) contrast(100%) brightness(0);
+  transition: filter 0.3s ease; /* Smooth transition for color change */
+}
 /*---------------------------------------
   SECTION               
 -----------------------------------------*/
@@ -287,7 +293,7 @@ strong {
 .custom-icon {
   color: var(--secondary-color);
 }
-
+ 
 
 /*---------------------------------------
   CUSTOM BUTTON               
@@ -327,6 +333,9 @@ strong {
   color: var(--white-color);
 }
 
+
+
+ 
 
 /*---------------------------------------
   VIDEO              
@@ -589,7 +598,10 @@ strong {
 .artists-thumb {
   position: relative;
   overflow: hidden;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+
 }
 
 .artists-image {
@@ -604,8 +616,7 @@ strong {
 }
 
 .artists-hover {
-  background-color: var(--primary-color);
-  background-color: rgba(248, 203, 46, 0.75);
+   background-color: rgba(21, 21, 17, 0.75);
   border-radius: var(--border-radius-medium);
   backdrop-filter: blur(5px) saturate(180%);
   -webkit-backdrop-filter: blur(5px) saturate(180%);
@@ -627,6 +638,13 @@ strong {
   margin-right: 20px;
 }
 
+.artists-hover p  {
+  color: var(--white-color);
+  display: inline-block;
+  /* min-width: 180px; */
+  margin-right: 20px;
+}
+
 .artists-hover p a {
   color: var(--secondary-color);
 }
@@ -638,6 +656,44 @@ strong {
 .artists-hover hr {
   margin: 1.5rem 0;
 }
+ .artists-section {
+  padding-top: 35px !important; 
+}
+.artists-section-header {
+  padding-bottom: 35px;
+}
+
+ 
+@media (max-width: 768px) {
+  .artists-hover {
+    padding: 20px; /* Reduce padding for mobile */
+  }
+
+  .artists-hover p strong {
+    font-size: 1rem; /* Reduce font size */
+    min-width: 150px; /* Adjust width */
+  }
+
+  .artists-hover p {
+    font-size: 0.9rem; /* Reduce font size for regular text */
+  }
+}
+
+@media (max-width: 576px) {
+  .artists-hover {
+    padding: 15px; /* Further reduce padding for extra-small devices */
+  }
+
+  .artists-hover p strong {
+    font-size: 0.9rem; /* Further reduce font size */
+    min-width: 120px; /* Adjust width */
+  }
+
+  .artists-hover p {
+    font-size: 0.8rem; /* Further reduce font size for regular text */
+  }
+}
+
 
 
 /*---------------------------------------
@@ -750,7 +806,7 @@ strong {
 
 .pricing-tag {
   background-color: var(--secondary-color);
-  border-radius: var(--border-radius-large);
+  border-radius: 50%; /* Ensures the element is always a circle */
   color: var(--white-color);
   font-weight: var(--font-weight-bold);
   text-align: center;
@@ -758,17 +814,44 @@ strong {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 120px;
+  width: 100px; /* Default size */
+  height: 100px; /* Default size */
   position: absolute;
   top: 0;
   right: 0;
-  margin: 20px;
+  margin: 15px; /* Adjusted for smaller screens */
 }
 
 .pricing-tag span {
-  font-size: 180%;
+  font-size: 120%; /* Default font size */
   line-height: normal;
+}
+
+/* Adjust for medium screens (tablets) */
+@media (min-width: 768px) {
+  .pricing-tag {
+    width: 110px;
+    height: 110px;
+    margin: 18px;
+  }
+
+  .pricing-tag span {
+    font-size: 150%;
+  }
+}
+
+
+/* Adjust for large screens (desktops) */
+@media (min-width: 1024px) {
+  .pricing-tag {
+    width: 120px;
+    height: 120px;
+    margin: 20px;
+  }
+
+  .pricing-tag span {
+    font-size: 180%;
+  }
 }
 
 .pricing-thumb .link-fx-1 {
@@ -778,6 +861,7 @@ strong {
 .pricing-thumb .link-fx-1:hover {
   color: var(--link-hover-color);
 }
+
 
 
 /*---------------------------------------
@@ -864,6 +948,114 @@ strong {
   font-size: var(--copyright-font-size);
 }
 
+/*---------------------------------------
+  FORMSPARK FORM              
+-----------------------------------------*/
+
+.product-inquiry {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.product-inquiry .container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.product-inquiry h2 {
+  font-size: 2rem; /* Default font size for headings */
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.product-inquiry p {
+  font-size: 1rem; /* Default font size for paragraphs */
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.btn-primary {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-inquiry {
+    padding: 1.5rem;
+  }
+
+  .product-inquiry h2 {
+    font-size: 1.8rem; /* Slightly smaller for smaller screens */
+  }
+
+  .product-inquiry p {
+    font-size: 0.9rem; /* Reduce paragraph font size */
+    margin-bottom: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem; /* Smaller input text */
+    padding: 0.6rem; /* Reduce padding */
+  }
+
+  .btn-primary {
+    padding: 0.6rem 1.5rem; /* Adjust button padding */
+    font-size: 0.9rem; /* Smaller button text */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-inquiry h2 {
+    font-size: 1.5rem; /* Further reduce heading size for extra small screens */
+  }
+
+  .product-inquiry p {
+    font-size: 0.85rem; /* Adjust paragraph font size */
+  }
+
+  .btn-primary {
+    font-size: 0.8rem; /* Adjust button font size */
+    padding: 0.5rem 1.2rem; /* Adjust padding */
+  }
+}
 
 /*---------------------------------------
   SOCIAL ICON               
@@ -913,6 +1105,26 @@ strong {
   to {
     transform: rotate(360deg);
   }
+}
+
+/*---------------------------------------
+  INQUIRY FORM              
+-----------------------------------------*/
+.form-description {
+  text-align: center; /* Center-align the main paragraph */
+}
+
+.form-perks {
+  list-style-type: disc; /* Standard bullet style */
+  margin: 0 auto; /* Center the list itself */
+  padding: 0;
+  text-align: left; /* Left-align the bullet points */
+  max-width: 500px; /* Optional: Limit the width for better alignment */
+}
+
+.form-perks li {
+  margin-bottom: 0.5rem; /* Spacing between bullet points */
+  line-height: 1.5; /* Improve readability for multi-line bullets */
 }
 
 
