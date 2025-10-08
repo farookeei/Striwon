@@ -104,6 +104,25 @@
         </div>
     </section>
 
+    <!-- NEW 3D MODEL SECTION -->
+    <section class="model-3d-section">
+        <div class="model-3d-container">
+            <div class="model-3d-content">
+                <h2 class="model-3d-title">ENGINEERED FOR PERFORMANCE</h2>
+                <p class="model-3d-subtitle">Scroll to explore our precision-crafted apparel</p>
+            </div>
+            <div class="model-3d-canvas-wrapper">
+                <canvas id="model-canvas"></canvas>
+                <div class="scroll-indicator">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M12 5v14M19 12l-7 7-7-7"/>
+                    </svg>
+                    <span>Scroll to rotate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="manifesto">
         <div class="manifesto-container">
             <div class="manifesto-content">
@@ -147,6 +166,10 @@
     <footer>
         <p>&copy; 2025 STRIWON. Built by Grit. All rights reserved.</p>
     </footer>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 
     <script>
         // Countdown Timer - Set your launch date here
@@ -193,6 +216,128 @@
                 heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
                 heroContent.style.opacity = 1 - (scrolled * 0.0015);
             }
+        });
+
+        // 3D Model Setup
+        let scene, camera, renderer, model;
+        let modelSection;
+        
+        function init3DModel() {
+            const canvas = document.getElementById('model-canvas');
+            modelSection = document.querySelector('.model-3d-section');
+            
+            // Scene setup
+            scene = new THREE.Scene();
+            
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+            camera.position.z = 5;
+            
+            // Renderer setup
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas, 
+                alpha: true, 
+                antialias: true 
+            });
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight1.position.set(5, 5, 5);
+            scene.add(directionalLight1);
+            
+            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+            directionalLight2.position.set(-5, -5, -5);
+            scene.add(directionalLight2);
+            
+            // Create a placeholder geometry (box representing t-shirt)
+            // Replace this with GLTFLoader when you have your model file
+            const geometry = new THREE.BoxGeometry(2, 2.5, 0.3);
+            const material = new THREE.MeshStandardMaterial({ 
+                color: 0xffffff,
+                metalness: 0.1,
+                roughness: 0.8
+            });
+            model = new THREE.Mesh(geometry, material);
+            scene.add(model);
+            
+            // Uncomment below to load a GLTF model instead
+            /*
+            const loader = new THREE.GLTFLoader();
+            loader.load(
+                'models/tshirt.glb', // Path to your 3D model
+                function(gltf) {
+                    model = gltf.scene;
+                    model.scale.set(2, 2, 2);
+                    scene.add(model);
+                },
+                function(xhr) {
+                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                },
+                function(error) {
+                    console.error('Error loading model:', error);
+                }
+            );
+            */
+            
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize, false);
+            
+            // Scroll animation
+            window.addEventListener('scroll', onScroll, false);
+            
+            // Initial render
+            animate();
+        }
+        
+        function onWindowResize() {
+            const canvas = document.getElementById('model-canvas');
+            camera.aspect = canvas.clientWidth / canvas.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        }
+        
+        function onScroll() {
+            if (!model || !modelSection) return;
+            
+            const rect = modelSection.getBoundingClientRect();
+            const sectionTop = rect.top;
+            const sectionHeight = rect.height;
+            const windowHeight = window.innerHeight;
+            
+            // Calculate scroll progress through the section (0 to 1)
+            let scrollProgress = 0;
+            
+            if (sectionTop < windowHeight && sectionTop > -sectionHeight) {
+                scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+                scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+            }
+            
+            // Rotate model based on scroll
+            if (model) {
+                model.rotation.y = scrollProgress * Math.PI * 2; // Full rotation
+                model.rotation.x = Math.sin(scrollProgress * Math.PI) * 0.2; // Subtle tilt
+            }
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Add subtle idle animation when not scrolling
+            if (model) {
+                model.rotation.y += 0.001;
+            }
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Initialize 3D model when page loads
+        window.addEventListener('load', () => {
+            init3DModel();
         });
     </script>
 </body>
