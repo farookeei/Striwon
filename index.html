@@ -365,7 +365,7 @@ loader.load(
 
     // Place camera at a distance proportional to model size
     // Keep camera's up vector and orientation (we assume camera is YOUR global camera)
-    const offsetZ = radius * 2.5; // increase to zoom out, reduce to zoom in
+    const offsetZ = radius * 3.2; // increase to zoom out, reduce to zoom in(original was 2.5)
     const offsetY = Math.max(radius * 0.25, 0.5); // slight lift
 
     // Aim camera at origin where model is centered
@@ -428,7 +428,7 @@ loader.load(
     
             // Rotate model based on scroll (exact mapping preserved)
             if (model) {
-                model.rotation.y = scrollProgress * Math.PI * 2; // Full rotation
+                model.rotation.y = scrollProgress * Math.PI * 4; // Full rotation(original was 2)
                 model.rotation.x = Math.sin(scrollProgress * Math.PI) * 0.2; // Subtle tilt
             }
         }
