@@ -177,26 +177,26 @@
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = launchDate - now;
-
+    
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+    
             document.getElementById('days').textContent = String(days).padStart(2, '0');
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-
+    
             if (distance < 0) {
                 clearInterval(countdownInterval);
                 document.querySelector('.countdown-wrapper').innerHTML = '<h2>LAUNCHED!</h2>';
             }
         }
-
+    
         const countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
-
+    
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -207,7 +207,7 @@
                 }
             });
         });
-
+    
         // Parallax effect on scroll
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
@@ -217,128 +217,240 @@
                 heroContent.style.opacity = 1 - (scrolled * 0.0015);
             }
         });
-
+    
         // 3D Model Setup
         let scene, camera, renderer, model;
         let modelSection;
-        
+    
+        // Helper: on-page debug banner (non-destructive)
+        function _getModelDebugBanner() {
+            let el = document.getElementById('model-debug-banner');
+            if (!el) {
+                el = document.createElement('div');
+                el.id = 'model-debug-banner';
+                Object.assign(el.style, {
+                    position: 'fixed',
+                    right: '12px',
+                    bottom: '12px',
+                    zIndex: 99999,
+                    padding: '8px 10px',
+                    background: 'rgba(0,0,0,0.6)',
+                    color: '#fff',
+                    fontFamily: 'monospace',
+                    fontSize: '12px',
+                    borderRadius: '6px',
+                    maxWidth: '360px',
+                    lineHeight: '1.2',
+                    pointerEvents: 'none'
+                });
+                el.textContent = '3D: initializing...';
+                document.body.appendChild(el);
+            }
+            return el;
+        }
+        const _banner = _getModelDebugBanner();
+        function _bannerLog(msg, isError = false) {
+            console[isError ? 'error' : 'log'](msg);
+            _banner.textContent = (isError ? 'ERROR: ' : '') + msg;
+            if (isError) _banner.style.color = '#ffb3b3';
+        }
+    
         function init3DModel() {
             const canvas = document.getElementById('model-canvas');
             modelSection = document.querySelector('.model-3d-section');
-            
-            // Scene setup
+    
+            // Don't break countdown logic — only 3D is affected if we abort
+            // Detect file:// opening (causes CORS for .glb). Warn but do not alter countdown.
+            if (location.protocol === 'file:') {
+                _bannerLog('Page opened via file:// — browsers block .glb requests. Run a local server (e.g. python3 -m http.server 8000) and open http://localhost:8000', true);
+                // We intentionally do not continue trying to fetch .glb when opened via file://
+                return;
+            }
+    
+            // Basic scene
             scene = new THREE.Scene();
-            
-            // Camera setup
-            camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    
+            // Camera setup (use canvas size or fallback)
+            const cWidth = (canvas && canvas.clientWidth) ? canvas.clientWidth : Math.max(window.innerWidth * 0.6, 600);
+            const cHeight = (canvas && canvas.clientHeight) ? canvas.clientHeight : Math.max(window.innerHeight * 0.45, 400);
+            camera = new THREE.PerspectiveCamera(45, cWidth / cHeight, 0.1, 1000);
             camera.position.z = 5;
-            
-            // Renderer setup
-            renderer = new THREE.WebGLRenderer({ 
-                canvas: canvas, 
-                alpha: true, 
-                antialias: true 
+    
+            // Renderer
+            renderer = new THREE.WebGLRenderer({
+                canvas: canvas || undefined,
+                alpha: true,
+                antialias: true
             });
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            renderer.setPixelRatio(window.devicePixelRatio);
-            
+            renderer.setSize(cWidth, cHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            renderer.setClearColor(0x000000, 0); // transparent
+    
             // Lighting
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
             scene.add(ambientLight);
-            
+    
             const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
             directionalLight1.position.set(5, 5, 5);
             scene.add(directionalLight1);
-            
+    
             const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
             directionalLight2.position.set(-5, -5, -5);
             scene.add(directionalLight2);
-            
-            // Create a placeholder geometry (box representing t-shirt)
-            // Replace this with GLTFLoader when you have your model file
-            const geometry = new THREE.BoxGeometry(2, 2.5, 0.3);
-            const material = new THREE.MeshStandardMaterial({ 
-                color: 0xffffff,
-                metalness: 0.1,
-                roughness: 0.8
-            });
-            model = new THREE.Mesh(geometry, material);
-            scene.add(model);
-            
-            // Uncomment below to load a GLTF model instead
-            /*
-            const loader = new THREE.GLTFLoader();
-            loader.load(
-                'models/tshirt.glb', // Path to your 3D model
-                function(gltf) {
-                    model = gltf.scene;
-                    model.scale.set(2, 2, 2);
-                    scene.add(model);
-                },
-                function(xhr) {
-                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-                },
-                function(error) {
-                    console.error('Error loading model:', error);
+    
+            // Fallback mesh if loader or model fails
+            function _createFallbackMesh() {
+                _bannerLog('Using fallback mesh (model not loaded)', true);
+                const geometry = new THREE.BoxGeometry(2, 0.8, 1.2);
+                const material = new THREE.MeshStandardMaterial({ color: 0xdddddd, metalness: 0.1, roughness: 0.8 });
+                model = new THREE.Mesh(geometry, material);
+                model.position.set(0, -0.2, 0);
+                scene.add(model);
+            }
+    
+            // Candidate paths (try root then relative)
+            const _candidates = ['/models/t_shirt.glb', './models/t_shirt.glb', 'models/t_shirt.glb'];
+    
+            // Find GLTFLoader (UMD or global)
+            const LoaderClass = (window.THREE && window.THREE.GLTFLoader) ? window.THREE.GLTFLoader : (typeof GLTFLoader !== 'undefined' ? GLTFLoader : null);
+    
+            if (!LoaderClass) {
+                _bannerLog('GLTFLoader not found on page. Include GLTFLoader.js (local or CDN). Falling back to mesh.', true);
+                _createFallbackMesh();
+                return;
+            }
+    
+            const loader = (LoaderClass === window.THREE.GLTFLoader) ? new window.THREE.GLTFLoader() : new LoaderClass();
+    
+            // Try loading with each candidate path in order
+            function _tryLoad(index = 0) {
+                if (index >= _candidates.length) {
+                    _bannerLog('All model path attempts failed. Confirm file exists at /models/t_shirt.glb and the server is running.', true);
+                    _createFallbackMesh();
+                    return;
                 }
-            );
-            */
-            
-            // Handle window resize
+                const path = _candidates[index];
+                _bannerLog('Attempting to load 3D model: ' + path);
+           // Replace your loader.load success callback with this:
+// Replace your loader.load success callback with this:
+loader.load(
+  'models/t_shirt.glb',
+  function (gltf) {
+    model = gltf.scene || gltf.scenes[0];
+    // preserve your chosen scale
+    model.scale.set(2, 2, 2);
+
+    // 1) Add model to scene (needed so bounding calculations work)
+    scene.add(model);
+
+    // 2) Compute bounding box and center model on origin
+    const box = new THREE.Box3().setFromObject(model);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+
+    // Move the model so its center is at world origin (0,0,0)
+    model.position.x -= center.x;
+    model.position.y -= center.y;
+    model.position.z -= center.z;
+
+    // Optionally lower model slightly so it sits on "floor" (tweak multiplier)
+    const floorOffset = size.y * 0.05; // 5% of model height
+    model.position.y -= floorOffset;
+
+    // 3) Reposition camera to nicely frame the model
+    // compute bounding sphere to get radius
+    const sphere = new THREE.Sphere();
+    box.getBoundingSphere(sphere);
+    const radius = sphere.radius * 1.1; // small padding
+
+    // Place camera at a distance proportional to model size
+    // Keep camera's up vector and orientation (we assume camera is YOUR global camera)
+    const offsetZ = radius * 2.5; // increase to zoom out, reduce to zoom in
+    const offsetY = Math.max(radius * 0.25, 0.5); // slight lift
+
+    // Aim camera at origin where model is centered
+    camera.position.set(0, offsetY, offsetZ);
+    camera.lookAt(0, 0, 0);
+    camera.updateProjectionMatrix();
+
+    // 4) Optional: update scroll-based rotation baseline
+    // If you use the scroll mapping that assumes model rotation starts at 0,
+    // make sure rotation is reset:
+    model.rotation.set(0, 0, 0);
+
+    console.log('Model centered and camera positioned. size:', size, 'radius:', radius);
+  },
+  function (xhr) {
+    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+  },
+  function (error) {
+    console.error('Error loading model:', error);
+  }
+);
+
+            }
+    
+            _tryLoad(0);
+    
+            // Event listeners (preserve your original functions)
             window.addEventListener('resize', onWindowResize, false);
-            
-            // Scroll animation
             window.addEventListener('scroll', onScroll, false);
-            
-            // Initial render
+    
+            // Start animation loop (keeps idle motion)
             animate();
         }
-        
+    
         function onWindowResize() {
             const canvas = document.getElementById('model-canvas');
-            camera.aspect = canvas.clientWidth / canvas.clientHeight;
+            if (!camera || !renderer) return;
+            const w = (canvas && canvas.clientWidth) ? canvas.clientWidth : Math.max(window.innerWidth * 0.6, 600);
+            const h = (canvas && canvas.clientHeight) ? canvas.clientHeight : Math.max(window.innerHeight * 0.45, 400);
+            camera.aspect = w / h;
             camera.updateProjectionMatrix();
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.setSize(w, h);
         }
-        
+    
         function onScroll() {
             if (!model || !modelSection) return;
-            
+    
             const rect = modelSection.getBoundingClientRect();
             const sectionTop = rect.top;
             const sectionHeight = rect.height;
             const windowHeight = window.innerHeight;
-            
+    
             // Calculate scroll progress through the section (0 to 1)
             let scrollProgress = 0;
-            
+    
             if (sectionTop < windowHeight && sectionTop > -sectionHeight) {
                 scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
                 scrollProgress = Math.max(0, Math.min(1, scrollProgress));
             }
-            
-            // Rotate model based on scroll
+    
+            // Rotate model based on scroll (exact mapping preserved)
             if (model) {
                 model.rotation.y = scrollProgress * Math.PI * 2; // Full rotation
                 model.rotation.x = Math.sin(scrollProgress * Math.PI) * 0.2; // Subtle tilt
             }
         }
-        
+    
         function animate() {
             requestAnimationFrame(animate);
-            
+    
             // Add subtle idle animation when not scrolling
             if (model) {
                 model.rotation.y += 0.001;
             }
-            
-            renderer.render(scene, camera);
+    
+            if (renderer && scene && camera) {
+                renderer.render(scene, camera);
+            }
         }
-        
-        // Initialize 3D model when page loads
+    
+        // Initialize 3D model when page loads (countdown already running)
         window.addEventListener('load', () => {
             init3DModel();
         });
     </script>
+    
 </body>
 </html>
