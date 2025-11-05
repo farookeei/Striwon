@@ -3,66 +3,669 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Short, focused description for search snippets -->
-    <meta name="description" content="STRIWON — Performance activewear built for relentless men. Launching Oct 29, 2025. Sign up for early access.">
+    <meta name="description" content="STRIWON — Performance activewear built for relentless men. Pre-order now for exclusive early access.">
     <meta name="keywords" content="STRIWON, activewear, performance wear, gym clothing, men's sportswear, fitness apparel">
-    <meta name="author" content="STRIWON Team">
-    <meta name="theme-color" content="#000000">
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://striwon.com/">
-
-    <title>STRIWON | Built by Grit</title>
-
-    <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/32icon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/16icon.png">
-    <link rel="icon" type="image/svg+xml" href="images/favicons/logo.svg">
-
-    <!-- Open Graph (social + search previews) -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="STRIWON">
-    <meta property="og:title" content="STRIWON | Built by Grit">
-    <meta property="og:description" content="Performance activewear built for relentless men. Launching Oct 29, 2025.">
-    <meta property="og:url" content="https://striwon.com/">
-    <meta property="og:image" content="https://striwon.com/images/og-image-v2.jpg">
-    <meta property="og:image:alt" content="STRIWON performance apparel — Built by Grit">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="STRIWON | Built by Grit">
-    <meta name="twitter:description" content="Performance activewear built for relentless men.">
-    <meta name="twitter:image" content="https://striwon.com/images/og-image-v2.jpg">
-
-    <!-- Schema.org Organization (helps Google pick up your logo) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "STRIWON",
-      "url": "https://striwon.com/",
-      "logo": "https://striwon.com/images/logo_new_dark.png"
-    }
-    </script>
-
+    <title>STRIWON | Built by Grit - Pre-Order Now</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        :root {
+            --primary: #000000;
+            --accent: #FF4655;
+            --text: #ffffff;
+            --text-dim: #999999;
+            --bg: #0a0a0a;
+            --bg-card: #121212;
+            --border: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cta-button {
+            background: var(--accent);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.3);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section with Video */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+        }
+
+        .countdown-wrapper {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            color: var(--text-dim);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .countdown-label-small {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Product Showcase Section */
+        .product-showcase {
+            padding: 6rem 5%;
+            background: var(--bg);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+        }
+
+        /* Product Carousel */
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 70, 85, 0.3);
+            border-color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: var(--accent);
+            width: 32px;
+            border-radius: 6px;
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 6rem 5%;
+            background: var(--bg-card);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-text {
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Size Chart Section */
+        .size-chart-section {
+            padding: 6rem 5%;
+            background: var(--bg);
+        }
+
+        .size-chart-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .size-chart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .size-chart-table th,
+        .size-chart-table td {
+            padding: 1.2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .size-chart-table th {
+            background: var(--bg);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .size-chart-table tr:hover {
+            background: rgba(255, 70, 85, 0.05);
+        }
+
+        .size-note {
+            padding: 1.5rem;
+            background: var(--bg);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Pre-Order Form Section */
+        .preorder-section {
+            padding: 6rem 5%;
+            background: var(--bg-card);
+        }
+
+        .preorder-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 70, 85, 0.4);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Social Links */
+        .social {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--primary);
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                border-top: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+
+            .countdown-value {
+                font-size: 2rem;
+            }
+
+            .product-image {
+                height: 400px;
+            }
+
+            .carousel-controls {
+                padding: 0 1rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .size-chart-table th,
+            .size-chart-table td {
+                padding: 0.8rem 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .preorder-form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown-wrapper {
+                padding: 1.5rem 1rem;
+            }
+
+            .countdown {
+                gap: 0.5rem;
+            }
+
+            .countdown-value {
+                font-size: 1.5rem;
+            }
+
+            .countdown-label-small {
+                font-size: 0.7rem;
+            }
+
+            .product-image {
+                height: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-
+    <!-- Navigation -->
     <nav>
-        <div class="logo-wrapper">
-            <img src="images/logo_new.png" alt="STRIWON Logo" class="logo-image">
-            <div class="logo-text">STRIWON</div>
+        <div class="nav-container">
+            <div class="logo-wrapper">
+                <img src="images/logo_new.png" alt="STRIWON Logo" class="logo-image">
+                <div class="logo-text">STRIWON</div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#products">Products</a>
+                <a href="#features">Features</a>
+                <a href="#sizing">Size Guide</a>
+                <a href="#preorder" class="cta-button">Pre-Order Now</a>
+            </div>
+            <button class="mobile-menu-toggle" id="menuToggle">☰</button>
         </div>
     </nav>
 
+    <!-- Hero Section with Video -->
     <section class="hero">
+        <div class="hero-video-container">
+            <!-- Video will autoplay and loop -->
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="assets/hero-video.mp4" type="video/mp4">
+            </video>
+            <!-- Fallback poster image if video doesn't load -->
+            <img src="assets/hero-poster.jpg" alt="STRIWON" class="hero-video-poster" style="display:none;">
+        </div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="tagline">BUILT BY GRIT</div>
             <h1 class="hero-title">SOMETHING<br>LEGENDARY<br>IS COMING</h1>
@@ -92,63 +695,6 @@
 
             <div class="social">
                 <a href="https://www.instagram.com/striwon/" class="social-link" target="_blank" rel="noopener">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61568672423371" class="social-link" target="_blank" rel="noopener">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </a>
-                <a href="https://www.youtube.com/@striwon" class="social-link" target="_blank" rel="noopener">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW 3D MODEL SECTION -->
-    <section class="model-3d-section">
-        <div class="model-3d-container">
-            <div class="model-3d-content">
-                <h2 class="model-3d-title">ENGINEERED FOR PERFORMANCE</h2>
-                <p class="model-3d-subtitle">Scroll to explore our precision-crafted apparel</p>
-            </div>
-            <div class="model-3d-canvas-wrapper">
-                <canvas id="model-canvas"></canvas>
-                <div class="scroll-indicator">
-                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M12 5v14M19 12l-7 7-7-7"/>
-                    </svg>
-                    <span>Scroll to rotate</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="manifesto">
-        <div class="manifesto-container">
-            <div class="manifesto-content">
-                <h2 class="manifesto-title">FOR THOSE WHO REFUSE TO QUIT</h2>
-                <div class="manifesto-text">
-                    <p>When others rest, you train.</p>
-                    <p>When others settle, you push harder.</p>
-                    <p>When others talk, you show up and do the work.</p>
-                </div>
-                <div class="manifesto-statement">
-                    <p>This is more than apparel. It's armor for the relentless. Built for those who understand that greatness isn't given—it's earned through sweat, sacrifice, and unbreakable grit.</p>
-                </div>
-                <div class="manifesto-cta">
-                    <p class="manifesto-question">Are you ready?</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="notify" id="notify">
-        <div class="notify-container">
-            <h2 class="notify-title">Coming October 29, 2025</h2>
-            <p class="notify-subtitle">Follow us on social media for the launch announcement</p>
-
-            <div class="social" style="margin: 3rem 0;">
-                <a href="https://www.instagram.com/striwon/" class="social-link" target="_blank" rel="noopener">
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=61568672423371" class="social-link" target="_blank" rel="noopener">
@@ -158,299 +704,442 @@
                     <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </a>
             </div>
-
-            <p class="notify-subtitle" style="margin-top: 2rem;">For inquiries: <a href="mailto:contact@striwon.com" style="color: var(--accent); text-decoration: none;">contact@striwon.com</a></p>
         </div>
     </section>
 
+    <!-- Product Showcase Section -->
+    <section class="product-showcase" id="products">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Performance Redefined</h2>
+                <p class="section-subtitle">Engineered for the relentless. Designed for greatness.</p>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Add your product images here -->
+                        <div class="carousel-slide">
+                            <img src="assets/products/product-1.jpg" alt="Product 1" class="product-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/products/product-2.jpg" alt="Product 2" class="product-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/products/product-3.jpg" alt="Product 3" class="product-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="assets/products/product-4.jpg" alt="Product 4" class="product-image">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn">←</button>
+                    <button class="carousel-btn" id="nextBtn">→</button>
+                </div>
+
+                <div class="carousel-indicators" id="indicators"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Built Different</h2>
+                <p class="section-subtitle">Every detail engineered for peak performance</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💨</div>
+                    <h3 class="feature-title">Breathable Tech</h3>
+                    <p class="feature-text">Advanced moisture-wicking fabric keeps you cool and dry during intense workouts</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <h3 class="feature-title">4-Way Stretch</h3>
+                    <p class="feature-text">Maximum flexibility and freedom of movement for unrestricted performance</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Anti-Odor</h3>
+                    <p class="feature-text">Antimicrobial technology prevents odor-causing bacteria buildup</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Quick-Dry</h3>
+                    <p class="feature-text">Rapid evaporation technology keeps you comfortable all day long</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏋️</div>
+                    <h3 class="feature-title">Reinforced Seams</h3>
+                    <p class="feature-text">Built to withstand the toughest training sessions without compromise</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3 class="feature-title">Reflective Details</h3>
+                    <p class="feature-text">Enhanced visibility for early morning or late night training</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Chart Section -->
+    <section class="size-chart-section" id="sizing">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Size Guide</h2>
+                <p class="section-subtitle">Find your perfect fit</p>
+            </div>
+
+            <div class="size-chart-container">
+                <table class="size-chart-table">
+                    <thead>
+                        <tr>
+                            <th>Size</th>
+                            <th>Chest (inches)</th>
+                            <th>Waist (inches)</th>
+                            <th>Length (inches)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>S</strong></td>
+                            <td>36-38</td>
+                            <td>30-32</td>
+                            <td>27</td>
+                        </tr>
+                        <tr>
+                            <td><strong>M</strong></td>
+                            <td>38-40</td>
+                            <td>32-34</td>
+                            <td>28</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L</strong></td>
+                            <td>40-42</td>
+                            <td>34-36</td>
+                            <td>29</td>
+                        </tr>
+                        <tr>
+                            <td><strong>XL</strong></td>
+                            <td>42-44</td>
+                            <td>36-38</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td><strong>XXL</strong></td>
+                            <td>44-46</td>
+                            <td>38-40</td>
+                            <td>31</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="size-note">
+                    All measurements are approximate. For best fit, measure your chest at the fullest part and waist at the natural waistline. If between sizes, we recommend sizing up.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Order Form Section -->
+    <section class="preorder-section" id="preorder">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Secure Your Pre-Order</h2>
+                <p class="section-subtitle">Be among the first to own STRIWON performance gear</p>
+            </div>
+
+            <div class="preorder-form-container">
+                <form id="preorderForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Full Name *</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address *</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="product">Select Product *</label>
+                        <select id="product" class="form-select" required>
+                            <option value="">Choose a product</option>
+                            <option value="performance-tee">Performance T-Shirt</option>
+                            <option value="training-shorts">Training Shorts</option>
+                            <option value="compression-top">Compression Top</option>
+                            <option value="joggers">Performance Joggers</option>
+                            <option value="bundle">Complete Bundle (Save 20%)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="size">Size *</label>
+                        <select id="size" class="form-select" required>
+                            <option value="">Choose your size</option>
+                            <option value="S">Small (S)</option>
+                            <option value="M">Medium (M)</option>
+                            <option value="L">Large (L)</option>
+                            <option value="XL">Extra Large (XL)</option>
+                            <option value="XXL">2XL (XXL)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="quantity">Quantity *</label>
+                        <select id="quantity" class="form-select" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="form-submit" id="submitBtn">Reserve Your Order</button>
+
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        ✓ Thank you! Your pre-order has been registered. We'll contact you soon with payment details.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
+        <div class="social" style="margin-bottom: 1.5rem;">
+            <a href="https://www.instagram.com/striwon/" class="social-link" target="_blank" rel="noopener">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61568672423371" class="social-link" target="_blank" rel="noopener">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@striwon" class="social-link" target="_blank" rel="noopener">
+                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+        </div>
         <p>&copy; 2025 STRIWON. Built by Grit. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">For inquiries: <a href="mailto:contact@striwon.com" style="color: var(--accent); text-decoration: none;">contact@striwon.com</a></p>
     </footer>
 
-    <!-- Three.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-
     <script>
-        // Countdown Timer - Set your launch date here
+        // Countdown Timer
         const launchDate = new Date('2025-10-29T00:00:00').getTime();
+        
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = launchDate - now;
-    
+
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
+
             document.getElementById('days').textContent = String(days).padStart(2, '0');
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-    
+
             if (distance < 0) {
                 clearInterval(countdownInterval);
-                document.querySelector('.countdown-wrapper').innerHTML = '<h2>LAUNCHED!</h2>';
+                document.querySelector('.countdown-wrapper').innerHTML = '<h2 style="font-size: 2rem; color: var(--accent);">LAUNCHED!</h2>';
             }
         }
-    
+
         const countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
-    
-        // Smooth scroll
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
-    
-        // Parallax effect on scroll
+
+        // Product Carousel
+        const track = document.getElementById('carouselTrack');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        // Create indicators
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+
+        const indicators = document.querySelectorAll('.indicator');
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Auto-advance carousel every 5 seconds
+        let autoAdvance = setInterval(nextSlide, 5000);
+
+        // Pause auto-advance on hover
+        track.parentElement.addEventListener('mouseenter', () => {
+            clearInterval(autoAdvance);
+        });
+
+        track.parentElement.addEventListener('mouseleave', () => {
+            autoAdvance = setInterval(nextSlide, 5000);
+        });
+
+        // Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+
+        // Pre-Order Form Submission
+        const preorderForm = document.getElementById('preorderForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        preorderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                product: document.getElementById('product').value,
+                size: document.getElementById('size').value,
+                quantity: document.getElementById('quantity').value
+            };
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+
+            // Simulate form submission (replace with actual API call)
+            setTimeout(() => {
+                console.log('Pre-order submitted:', formData);
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                preorderForm.reset();
+                
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Reserve Your Order';
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+
+        // Video fallback handler
+        const heroVideo = document.querySelector('.hero-video');
+        const videoPoster = document.querySelector('.hero-video-poster');
+
+        heroVideo.addEventListener('error', () => {
+            // If video fails to load, show poster image
+            videoPoster.style.display = 'block';
+            heroVideo.style.display = 'none';
+        });
+
+        heroVideo.addEventListener('loadeddata', () => {
+            // Hide poster when video loads
+            videoPoster.style.display = 'none';
+        });
+
+        // Parallax effect on hero content
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const heroContent = document.querySelector('.hero-content');
-            if (heroContent) {
+            
+            if (heroContent && scrolled < window.innerHeight) {
                 heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
                 heroContent.style.opacity = 1 - (scrolled * 0.0015);
             }
         });
-    
-        // 3D Model Setup
-        let scene, camera, renderer, model;
-        let modelSection;
-    
-        // Helper: on-page debug banner (non-destructive)
-        function _getModelDebugBanner() {
-            let el = document.getElementById('model-debug-banner');
-            if (!el) {
-                el = document.createElement('div');
-                el.id = 'model-debug-banner';
-                Object.assign(el.style, {
-                    position: 'fixed',
-                    right: '12px',
-                    bottom: '12px',
-                    zIndex: 99999,
-                    padding: '8px 10px',
-                    background: 'rgba(0,0,0,0.6)',
-                    color: '#fff',
-                    fontFamily: 'monospace',
-                    fontSize: '12px',
-                    borderRadius: '6px',
-                    maxWidth: '360px',
-                    lineHeight: '1.2',
-                    pointerEvents: 'none'
-                });
-                el.textContent = '3D: initializing...';
-                document.body.appendChild(el);
-            }
-            return el;
-        }
-        const _banner = _getModelDebugBanner();
-        function _bannerLog(msg, isError = false) {
-            console[isError ? 'error' : 'log'](msg);
-            _banner.textContent = (isError ? 'ERROR: ' : '') + msg;
-            if (isError) _banner.style.color = '#ffb3b3';
-        }
-    
-        function init3DModel() {
-            const canvas = document.getElementById('model-canvas');
-            modelSection = document.querySelector('.model-3d-section');
-    
-            // Don't break countdown logic — only 3D is affected if we abort
-            // Detect file:// opening (causes CORS for .glb). Warn but do not alter countdown.
-            if (location.protocol === 'file:') {
-                _bannerLog('Page opened via file:// — browsers block .glb requests. Run a local server (e.g. python3 -m http.server 8000) and open http://localhost:8000', true);
-                // We intentionally do not continue trying to fetch .glb when opened via file://
-                return;
-            }
-    
-            // Basic scene
-            scene = new THREE.Scene();
-    
-            // Camera setup (use canvas size or fallback)
-            const cWidth = (canvas && canvas.clientWidth) ? canvas.clientWidth : Math.max(window.innerWidth * 0.6, 600);
-            const cHeight = (canvas && canvas.clientHeight) ? canvas.clientHeight : Math.max(window.innerHeight * 0.45, 400);
-            camera = new THREE.PerspectiveCamera(45, cWidth / cHeight, 0.1, 1000);
-            camera.position.z = 5;
-    
-            // Renderer
-            renderer = new THREE.WebGLRenderer({
-                canvas: canvas || undefined,
-                alpha: true,
-                antialias: true
-            });
-            renderer.setSize(cWidth, cHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-            renderer.setClearColor(0x000000, 0); // transparent
-    
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-            scene.add(ambientLight);
-    
-            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight1.position.set(5, 5, 5);
-            scene.add(directionalLight1);
-    
-            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
-            directionalLight2.position.set(-5, -5, -5);
-            scene.add(directionalLight2);
-    
-            // Fallback mesh if loader or model fails
-            function _createFallbackMesh() {
-                _bannerLog('Using fallback mesh (model not loaded)', true);
-                const geometry = new THREE.BoxGeometry(2, 0.8, 1.2);
-                const material = new THREE.MeshStandardMaterial({ color: 0xdddddd, metalness: 0.1, roughness: 0.8 });
-                model = new THREE.Mesh(geometry, material);
-                model.position.set(0, -0.2, 0);
-                scene.add(model);
-            }
-    
-            // Candidate paths (try root then relative)
-            const _candidates = ['/models/t_shirt.glb', './models/t_shirt.glb', 'models/t_shirt.glb'];
-    
-            // Find GLTFLoader (UMD or global)
-            const LoaderClass = (window.THREE && window.THREE.GLTFLoader) ? window.THREE.GLTFLoader : (typeof GLTFLoader !== 'undefined' ? GLTFLoader : null);
-    
-            if (!LoaderClass) {
-                _bannerLog('GLTFLoader not found on page. Include GLTFLoader.js (local or CDN). Falling back to mesh.', true);
-                _createFallbackMesh();
-                return;
-            }
-    
-            const loader = (LoaderClass === window.THREE.GLTFLoader) ? new window.THREE.GLTFLoader() : new LoaderClass();
-    
-            // Try loading with each candidate path in order
-            function _tryLoad(index = 0) {
-                if (index >= _candidates.length) {
-                    _bannerLog('All model path attempts failed. Confirm file exists at /models/t_shirt.glb and the server is running.', true);
-                    _createFallbackMesh();
-                    return;
-                }
-                const path = _candidates[index];
-                _bannerLog('Attempting to load 3D model: ' + path);
-           // Replace your loader.load success callback with this:
-// Replace your loader.load success callback with this:
-loader.load(
-  'models/t_shirt.glb',
-  function (gltf) {
-    model = gltf.scene || gltf.scenes[0];
-    // preserve your chosen scale
-    model.scale.set(2, 2, 2);
-
-    // 1) Add model to scene (needed so bounding calculations work)
-    scene.add(model);
-
-    // 2) Compute bounding box and center model on origin
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
-
-    // Move the model so its center is at world origin (0,0,0)
-    model.position.x -= center.x;
-    model.position.y -= center.y;
-    model.position.z -= center.z;
-
-    // Optionally lower model slightly so it sits on "floor" (tweak multiplier)
-    const floorOffset = size.y * 0.05; // 5% of model height
-    model.position.y -= floorOffset;
-
-    // 3) Reposition camera to nicely frame the model
-    // compute bounding sphere to get radius
-    const sphere = new THREE.Sphere();
-    box.getBoundingSphere(sphere);
-    const radius = sphere.radius * 1.1; // small padding
-
-    // Place camera at a distance proportional to model size
-    // Keep camera's up vector and orientation (we assume camera is YOUR global camera)
-    const offsetZ = radius * 3.2; // increase to zoom out, reduce to zoom in(original was 2.5)
-    const offsetY = Math.max(radius * 0.25, 0.5); // slight lift
-
-    // Aim camera at origin where model is centered
-    camera.position.set(0, offsetY, offsetZ);
-    camera.lookAt(0, 0, 0);
-    camera.updateProjectionMatrix();
-
-    // 4) Optional: update scroll-based rotation baseline
-    // If you use the scroll mapping that assumes model rotation starts at 0,
-    // make sure rotation is reset:
-    model.rotation.set(0, 0, 0);
-
-    console.log('Model centered and camera positioned. size:', size, 'radius:', radius);
-  },
-  function (xhr) {
-    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-  },
-  function (error) {
-    console.error('Error loading model:', error);
-  }
-);
-
-            }
-    
-            _tryLoad(0);
-    
-            // Event listeners (preserve your original functions)
-            window.addEventListener('resize', onWindowResize, false);
-            window.addEventListener('scroll', onScroll, false);
-    
-            // Start animation loop (keeps idle motion)
-            animate();
-        }
-    
-        function onWindowResize() {
-            const canvas = document.getElementById('model-canvas');
-            if (!camera || !renderer) return;
-            const w = (canvas && canvas.clientWidth) ? canvas.clientWidth : Math.max(window.innerWidth * 0.6, 600);
-            const h = (canvas && canvas.clientHeight) ? canvas.clientHeight : Math.max(window.innerHeight * 0.45, 400);
-            camera.aspect = w / h;
-            camera.updateProjectionMatrix();
-            renderer.setSize(w, h);
-        }
-    
-        function onScroll() {
-            if (!model || !modelSection) return;
-    
-            const rect = modelSection.getBoundingClientRect();
-            const sectionTop = rect.top;
-            const sectionHeight = rect.height;
-            const windowHeight = window.innerHeight;
-    
-            // Calculate scroll progress through the section (0 to 1)
-            let scrollProgress = 0;
-    
-            if (sectionTop < windowHeight && sectionTop > -sectionHeight) {
-                scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
-                scrollProgress = Math.max(0, Math.min(1, scrollProgress));
-            }
-    
-            // Rotate model based on scroll (exact mapping preserved)
-            if (model) {
-                model.rotation.y = scrollProgress * Math.PI * 4; // Full rotation(original was 2)
-                model.rotation.x = Math.sin(scrollProgress * Math.PI) * 0.2; // Subtle tilt
-            }
-        }
-    
-        function animate() {
-            requestAnimationFrame(animate);
-    
-            // Add subtle idle animation when not scrolling
-            if (model) {
-                model.rotation.y += 0.001;
-            }
-    
-            if (renderer && scene && camera) {
-                renderer.render(scene, camera);
-            }
-        }
-    
-        // Initialize 3D model when page loads (countdown already running)
-        window.addEventListener('load', () => {
-            init3DModel();
-        });
     </script>
-    
 </body>
 </html>
